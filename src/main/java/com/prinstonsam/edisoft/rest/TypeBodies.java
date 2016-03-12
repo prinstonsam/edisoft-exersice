@@ -23,6 +23,25 @@ import java.util.List;
 //@RequestScoped
 @Stateless
 public class TypeBodies {
+
+/*
+    С этим вариантом
+    22:15:33,731 ERROR [org.jboss.as.server] (management-handler-thread - 9) JBAS015860: Redeploy of deployment "edisoft.war" was rolled back with the following failure message:
+    {"JBAS014671: Failed services" => {"jboss.deployment.unit.\"edisoft.war\".INSTALL" => "org.jboss.msc.service.StartException in service jboss.deployment.unit.\"edisoft.war\".INSTALL: JBAS018733: Failed to process phase INSTALL of deployment \"edisoft.war\"
+        Caused by: org.jboss.as.server.deployment.DeploymentUnitProcessingException: JBAS014544: No EJB found with interface of type 'com.prinstonsam.edisoft.service.TypeBodyServiceImpl' for binding com.prinstonsam.edisoft.rest.TypeBodies/typeBodyService"}}
+*/
+        @EJB
+    private TypeBodyServiceImpl typeBodyService;
+
+/*
+    С этим вариантом
+    22:06:53,785 ERROR [org.jboss.as.server] (management-handler-thread - 5) JBAS015860: Redeploy of deployment "edisoft.war" was rolled b
+    ack with the following failure message:
+    {"JBAS014671: Failed services" => {"jboss.deployment.unit.\"edisoft.war\".INSTALL" => "org.jboss.msc.service.StartException in service
+        jboss.deployment.unit.\"edisoft.war\".INSTALL: JBAS018733: Failed to process phase INSTALL of deployment \"edisoft.war\"
+        Caused by: org.jboss.as.server.deployment.DeploymentUnitProcessingException: JBAS014544: No EJB found with interface of type 'com.
+        prinstonsam.edisoft.service.TypeBodyServiceImpl' for binding com.prinstonsam.edisoft.rest.TypeBodies/typeBodyService"}}
+*/
     @EJB
     private TypeBodyServiceImpl typeBodyService;
 
