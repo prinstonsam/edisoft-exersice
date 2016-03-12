@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="STDOUT">
+            <PatternLayout pattern="%C{1}.%M %m %ex%n"/>
+        </Console>
+        <File name="File" fileName="test.log">
+            <PatternLayout>
+                <pattern>%d %p %C{1.} [%t] %m%n</pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+
+
+    <Loggers>
+        <Logger name="javacourse" level="trace" additivity="false">
+            <AppenderRef ref = "File"/>
+        </Logger>
+        <Root level="error">
+            <AppenderRef ref = "STDOUT"/>
+        </Root>
+    </Loggers>
+
+</Configuration>
+
+
+
+
+
+
+
+
+
+
+
+
