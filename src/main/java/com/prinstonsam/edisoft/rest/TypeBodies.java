@@ -43,7 +43,7 @@ public class TypeBodies {
         prinstonsam.edisoft.service.TypeBodyServiceImpl' for binding com.prinstonsam.edisoft.rest.TypeBodies/typeBodyService"}}
 */
     @EJB
-    private TypeBodyServiceImpl typeBodyService;
+    private TypeBodyService typeBodyService1;
 
     @GET
     @Produces("application/xml")
