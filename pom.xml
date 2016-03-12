@@ -26,17 +26,17 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
-            <plugin>
+<!--            <plugin>
                 <groupId>org.jboss.as.plugins</groupId>
                 <artifactId>jboss-as-maven-plugin</artifactId>
                 <version>7.7.Final</version>
                 <configuration>
                     <hostname>localhost</hostname>
                     <port>9999</port>
-                    <username>isamsonov</username>
-                    <password>111qqq@@@</password>
+                    <username></username>
+                    <password></password>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
     <packaging>war</packaging>
