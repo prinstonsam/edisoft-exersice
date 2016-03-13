@@ -1,16 +1,20 @@
 package com.prinstonsam.edisoft.model;
 
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Objects;
 
-/**
- * Created by samsik on 29.02.16.
- */
 @Entity
 @Table(name = "transmission")
 public class Transmission {
 
     public Transmission() {
+    }
+
+    public Transmission(String serialNumber, TypeTransmission typeTransmission) {
+        this.typeTransmission = typeTransmission;
+        this.serialNumber = serialNumber;
     }
 
     @Id
@@ -20,6 +24,7 @@ public class Transmission {
 
     @ManyToOne
     @JoinColumn(name = "type_transmission_id", nullable = true)
+    @JsonManagedReference
     private TypeTransmission typeTransmission;
 
     private String serialNumber;

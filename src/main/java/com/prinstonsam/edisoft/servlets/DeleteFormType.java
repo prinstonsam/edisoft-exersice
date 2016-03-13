@@ -1,6 +1,6 @@
 package com.prinstonsam.edisoft.servlets;
 
-import com.prinstonsam.edisoft.service.TypeBodyService;
+import com.prinstonsam.edisoft.service.TypeBodyServiceImpl;
 import com.prinstonsam.edisoft.service.TypeEngineServiceImpl;
 import com.prinstonsam.edisoft.service.TypeTransmissionServiceImpl;
 import org.apache.commons.lang3.StringUtils;
@@ -14,14 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Created by samsik on 06.03.16.
- */
 @WebServlet(urlPatterns = "/deleteformtype")
 public class DeleteFormType extends HttpServlet {
-
     @EJB
-    TypeBodyService typeBodyService;
+    TypeBodyServiceImpl typeBodyService;
 
     @EJB
     TypeEngineServiceImpl typeEngineService;

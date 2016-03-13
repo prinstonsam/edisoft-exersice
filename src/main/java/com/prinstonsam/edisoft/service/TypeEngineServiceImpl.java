@@ -14,37 +14,28 @@ import java.util.List;
  * Created by samsik on 05.03.16.
  */
 @Stateless
-public class TypeEngineServiceImpl
-//        implements TypeService<TypeEngine>
-{
-
-//    Dao<TypeEngine> typeEngineDao;
+public class TypeEngineServiceImpl{
 
     @EJB
     HibernateTypeEngineDao typeEngineDao;
 
-//    @Override
     public TypeEngine create(TypeEngine type) {
         typeEngineDao.save(type);
         return type;
     }
 
-//    @Override
     public void delete(TypeEngine type) {
         typeEngineDao.delete(type);
     }
 
-//    @Override
     public TypeEngine getByName(String name) {
         return typeEngineDao.getByName(name);
     }
 
-//    @Override
     public TypeEngine getById(Integer id) {
         return typeEngineDao.getById(id);
     }
 
-//    @Override
     public List<TypeEngine> getAll() {
         return typeEngineDao.getAll();
     }

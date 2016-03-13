@@ -2,6 +2,7 @@ package com.prinstonsam.edisoft.model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -33,14 +34,17 @@ public class Car {
 
     @OneToOne
     @JoinColumn(name = "transmission_id", unique = true)
+    @JsonManagedReference
     private Transmission transmission;
 
     @OneToOne
     @JoinColumn(name = "engine_id", unique = true)
+    @JsonManagedReference
     private Engine engine;
 
     @OneToOne
     @JoinColumn(name = "body_id", unique = true)
+    @JsonManagedReference
     private Body body;
 
     public Integer getId() {

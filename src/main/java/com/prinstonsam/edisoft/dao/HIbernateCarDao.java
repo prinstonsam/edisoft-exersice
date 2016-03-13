@@ -14,29 +14,26 @@ public class HIbernateCarDao {
     @PersistenceContext(unitName="MyPostgreDS")
     Session session;
 
-    //    @Override
     public Integer save(Car value) {
         return (Integer) session.save(value);
     }
 
-    //    @Override
     public void delete(Car value) {
         session.delete(value);
     }
 
-    //    @Override
     public Car getBySerialNumber(String serialNumber) {
         Query query = session.createQuery("from Car c where c.serialNumber = ?");
         query.setParameter(0, serialNumber);
         return (Car) query.uniqueResult();
     }
 
-    //    @Override
     public Car getById(Integer id) {
-        return (Car) session.load(Car.class, id);
+        Query query = session.createQuery("from Car c where c.id = ?");
+        query.setParameter(0, id);
+        return (Car) query.uniqueResult();
     }
 
-    //    @Override
     public List<Car> getAll() {
         Query query = session.createQuery("from Car c");
         return query.list();

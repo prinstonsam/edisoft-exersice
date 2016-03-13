@@ -1,7 +1,7 @@
 package com.prinstonsam.edisoft.servlets;
 
 import com.prinstonsam.edisoft.model.TypeBody;
-import com.prinstonsam.edisoft.service.TypeBodyService;
+import com.prinstonsam.edisoft.service.TypeBodyServiceImpl;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -16,7 +16,7 @@ import java.util.List;
 @WebServlet(urlPatterns = "/addbody")
 public class AddBodyServlet extends HttpServlet {
     @EJB
-    TypeBodyService typeBodyService;
+    TypeBodyServiceImpl typeBodyService;
 
     @Override
     protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {

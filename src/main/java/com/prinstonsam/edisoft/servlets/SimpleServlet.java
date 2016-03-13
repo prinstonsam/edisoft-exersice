@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- * Created by samsik on 27.02.16.
- */
 @WebServlet(urlPatterns = "/show")
 public class SimpleServlet extends HttpServlet {
     @EJB
@@ -40,15 +37,10 @@ public class SimpleServlet extends HttpServlet {
             writer.println("error typeBody");
         }
         writer.close();
-
-
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-
-
-
     }
 
 }

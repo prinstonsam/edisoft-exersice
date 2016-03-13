@@ -1,14 +1,11 @@
 package com.prinstonsam.edisoft.model;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Objects;
 
-/**
- * Created by samsik on 29.02.16.
- */
+
 @Entity
 @Table(name = "body")
 public class Body {
@@ -16,12 +13,11 @@ public class Body {
     public Body() {
     }
 
-    public Body(String vin, String color, Integer countDoors, TypeBody typeBody, Car car) {
+    public Body(String vin, String color, Integer countDoors, TypeBody typeBody) {
         this.vin = vin;
         this.color = color;
         this.countDoors = countDoors;
         this.typeBody = typeBody;
-        this.car = car;
     }
 
     @Id
@@ -41,18 +37,8 @@ public class Body {
 
     @ManyToOne
     @JoinColumn(name = "type_body_id", nullable = true)
+    @JsonManagedReference
     private TypeBody typeBody;
-
-    @OneToOne(mappedBy = "body")
-    private Car car;
-
-    public Car getCar() {
-        return car;
-    }
-
-    public void setCar(Car car) {
-        this.car = car;
-    }
 
     public Integer getId() {
         return id;
@@ -103,12 +89,11 @@ public class Body {
                 Objects.equals(vin, body.vin) &&
                 Objects.equals(color, body.color) &&
                 Objects.equals(countDoors, body.countDoors) &&
-                Objects.equals(typeBody, body.typeBody) &&
-                Objects.equals(car, body.car);
+                Objects.equals(typeBody, body.typeBody);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, vin, color, countDoors, typeBody, car);
+        return Objects.hash(id, vin, color, countDoors, typeBody);
     }
 }

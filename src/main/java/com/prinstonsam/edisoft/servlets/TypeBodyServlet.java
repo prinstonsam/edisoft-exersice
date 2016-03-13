@@ -1,8 +1,7 @@
 package com.prinstonsam.edisoft.servlets;
 
 import com.prinstonsam.edisoft.model.TypeBody;
-import com.prinstonsam.edisoft.service.TypeBodyService;
-import org.apache.commons.lang3.StringUtils;
+import com.prinstonsam.edisoft.service.TypeBodyServiceImpl;
 
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
@@ -19,9 +18,8 @@ import java.util.List;
  */
 @WebServlet(urlPatterns = "/typebody")
 public class TypeBodyServlet extends HttpServlet {
-
     @EJB
-    TypeBodyService typeBodyService;
+    TypeBodyServiceImpl typeBodyService;
 
     protected void processRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
             throws ServletException, IOException{

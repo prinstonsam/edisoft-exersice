@@ -21,7 +21,6 @@ public class TypeEngineServlet extends HttpServlet {
     @EJB
     TypeEngineServiceImpl typeEngineService;
 
-
     protected void processRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)
             throws ServletException, IOException {
         httpServletResponse.setContentType("text/html;charset=UTF-8");

@@ -14,29 +14,26 @@ public class HibernateTransmissionDao {
     @PersistenceContext(unitName="MyPostgreDS")
     Session session;
 
-    //    @Override
     public Integer save(Transmission value) {
         return (Integer) session.save(value);
     }
 
-    //    @Override
     public void delete(Transmission value) {
         session.delete(value);
     }
 
-    //    @Override
     public Transmission getBySerialNumber(String serialNumber) {
         Query query = session.createQuery("from Transmission t where t.serialNumber = ?");
         query.setParameter(0, serialNumber);
         return (Transmission) query.uniqueResult();
     }
 
-    //    @Override
     public Transmission getById(Integer id) {
-        return (Transmission) session.load(Transmission.class, id);
+        Query query = session.createQuery("from Transmission t where t.id = ?");
+        query.setParameter(0, id);
+        return (Transmission) query.uniqueResult();
     }
 
-    //    @Override
     public List<Transmission> getAll() {
         Query query = session.createQuery("from Transmission t");
         return query.list();

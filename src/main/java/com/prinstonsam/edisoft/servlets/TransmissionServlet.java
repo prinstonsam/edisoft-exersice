@@ -1,8 +1,6 @@
 package com.prinstonsam.edisoft.servlets;
 
-import com.prinstonsam.edisoft.model.Engine;
 import com.prinstonsam.edisoft.model.Transmission;
-import com.prinstonsam.edisoft.service.EngineServiceImpl;
 import com.prinstonsam.edisoft.service.TransmissionServiceImpl;
 
 import javax.ejb.EJB;
@@ -17,7 +15,6 @@ import java.util.List;
 
 @WebServlet(urlPatterns = "/transmission")
 public class TransmissionServlet extends HttpServlet{
-
     @EJB
     TransmissionServiceImpl transmissionService;
 

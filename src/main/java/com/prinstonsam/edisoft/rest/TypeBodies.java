@@ -1,68 +1,70 @@
 package com.prinstonsam.edisoft.rest;
 
 import com.prinstonsam.edisoft.model.TypeBody;
-import com.prinstonsam.edisoft.service.TypeBodyService;
 import com.prinstonsam.edisoft.service.TypeBodyServiceImpl;
 
-import javax.annotation.ManagedBean;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.enterprise.context.RequestScoped;
-import javax.inject.Named;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
-import javax.ws.rs.core.StreamingOutput;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintStream;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @Path("/typebodies")
-//@RequestScoped
 @Stateless
 public class TypeBodies {
 
-/*
-    С этим вариантом
-    22:15:33,731 ERROR [org.jboss.as.server] (management-handler-thread - 9) JBAS015860: Redeploy of deployment "edisoft.war" was rolled back with the following failure message:
-    {"JBAS014671: Failed services" => {"jboss.deployment.unit.\"edisoft.war\".INSTALL" => "org.jboss.msc.service.StartException in service jboss.deployment.unit.\"edisoft.war\".INSTALL: JBAS018733: Failed to process phase INSTALL of deployment \"edisoft.war\"
-        Caused by: org.jboss.as.server.deployment.DeploymentUnitProcessingException: JBAS014544: No EJB found with interface of type 'com.prinstonsam.edisoft.service.TypeBodyServiceImpl' for binding com.prinstonsam.edisoft.rest.TypeBodies/typeBodyService"}}
-*/
-        @EJB
+    @EJB
     private TypeBodyServiceImpl typeBodyService;
 
-/*
-    С этим вариантом
-    22:06:53,785 ERROR [org.jboss.as.server] (management-handler-thread - 5) JBAS015860: Redeploy of deployment "edisoft.war" was rolled b
-    ack with the following failure message:
-    {"JBAS014671: Failed services" => {"jboss.deployment.unit.\"edisoft.war\".INSTALL" => "org.jboss.msc.service.StartException in service
-        jboss.deployment.unit.\"edisoft.war\".INSTALL: JBAS018733: Failed to process phase INSTALL of deployment \"edisoft.war\"
-        Caused by: org.jboss.as.server.deployment.DeploymentUnitProcessingException: JBAS014544: No EJB found with interface of type 'com.
-        prinstonsam.edisoft.service.TypeBodyServiceImpl' for binding com.prinstonsam.edisoft.rest.TypeBodies/typeBodyService"}}
-*/
-    @EJB
-    private TypeBodyService typeBodyService1;
-
     @GET
+    @Path("xml")
     @Produces("application/xml")
-    public StreamingOutput getTypeBodies() {
-        return new StreamingOutput() {
-            List<TypeBody> typeBodies = typeBodyService.getAll();
-            public void write(OutputStream outputStream) throws IOException, WebApplicationException {
-                outputXMLTypeBodies(outputStream, typeBodies);
-            }
-        };
+    public List<TypeBody> getTypeBodiesXml() {
+        return typeBodyService.getAll();
     }
 
-    protected void outputXMLTypeBodies(OutputStream os, List<TypeBody> typeBodies) throws IOException {
-        PrintStream writer = new PrintStream(os);
-        for (TypeBody typeBody : typeBodies) {
-            writer.println("<type-body>");
-            writer.println("   <id>" + typeBody.getId() + "</id>");
-            writer.println("   <name>" + typeBody.getName() + "</name>");
-            writer.println("</type-body>");
-        }
+    @GET
+    @Path("json")
+    @Produces("application/json")
+    public List<TypeBody> getTypeBodiesJson() {
+        return typeBodyService.getAll();
+    }
+
+    @GET
+    @Path("json/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public TypeBody getTypeBody(@PathParam("id") String id) {
+        TypeBody typeBody = typeBodyService.getById(Integer.parseInt(id));
+        return typeBody != null ? typeBody : null;
+    }
+
+    @POST
+    @Path("add")
+    @Produces(MediaType.APPLICATION_JSON)
+
+    public List<TypeBody> queryFormParams(@FormParam("name") String name) throws URISyntaxException {
+        typeBodyService.create(new TypeBody(name));
+        return getTypeBodiesJson();
+    }
+
+    @DELETE
+    @Path("delete/{id}")
+    public void deleteTypeBody(@PathParam("id") int id) {
+        TypeBody typeBody = typeBodyService.getById(id);
+        if (typeBody == null) throw new WebApplicationException(Response.Status.NOT_FOUND);
+        typeBodyService.delete(typeBody);
+    }
+
+
+
+
+    //Example for XML impl
+    @GET
+    @Path("xml2")
+    @Produces(MediaType.APPLICATION_XML)
+    public List<TypeBody> getTypeBodiesXml2() {
+        return typeBodyService.getAll();
     }
 }

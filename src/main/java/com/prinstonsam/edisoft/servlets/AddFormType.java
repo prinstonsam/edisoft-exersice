@@ -16,7 +16,7 @@ import java.io.IOException;
 public class AddFormType extends HttpServlet {
 
     @EJB
-    TypeBodyService typeBodyService;
+    TypeBodyServiceImpl typeBodyService;
 
     @EJB
     TypeEngineServiceImpl typeEngineService;

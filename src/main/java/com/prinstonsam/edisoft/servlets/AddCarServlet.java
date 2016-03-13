@@ -41,7 +41,6 @@ public class AddCarServlet extends HttpServlet {
 
         List<Body> bodies = bodyService.getFreeBody();
 
-
         httpServletRequest.setAttribute("transmissions", transmissions);
         httpServletRequest.setAttribute("engines", engines);
         httpServletRequest.setAttribute("bodies", bodies);

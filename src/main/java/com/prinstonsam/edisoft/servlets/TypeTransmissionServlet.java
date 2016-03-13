@@ -21,7 +21,6 @@ import java.util.List;
 @WebServlet(urlPatterns = "/typetransmission")
 public class TypeTransmissionServlet extends HttpServlet {
     @EJB
-//    TypeService<TypeTransmission> typeTransmissionService;
     TypeTransmissionServiceImpl typeTransmissionService;
 
     protected void processRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)

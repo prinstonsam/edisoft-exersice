@@ -2,21 +2,12 @@ package com.prinstonsam.edisoft.model;
 
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.Set;
 
-/**
- * Created by samsik on 29.02.16.
- */
 @Entity
 @Table(name = "type_transmission")
 public class TypeTransmission {
     public TypeTransmission() {
     }
-
-/*    public TypeTransmission(Set<Transmission> transmissions, String name) {
-        this.transmissions = transmissions;
-        this.name = name;
-    }*/
 
     public TypeTransmission(String name) {
         this.name = name;

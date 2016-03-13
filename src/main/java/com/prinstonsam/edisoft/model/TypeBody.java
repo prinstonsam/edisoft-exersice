@@ -4,6 +4,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.util.Objects;
 import java.util.Set;
@@ -13,6 +14,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "type_body")
+@XmlRootElement(name = "type_body")
 public class TypeBody implements Serializable {
     public TypeBody(){
 

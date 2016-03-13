@@ -14,29 +14,26 @@ public class HibernateEngineDao {
     @PersistenceContext(unitName="MyPostgreDS")
     Session session;
 
-    //    @Override
     public Integer save(Engine value) {
         return (Integer) session.save(value);
     }
 
-    //    @Override
     public void delete(Engine value) {
         session.delete(value);
     }
 
-    //    @Override
     public Engine getBySerialNumber(String serialNumber) {
         Query query = session.createQuery("from Engine e where e.serialNumber = ?");
         query.setParameter(0, serialNumber);
         return (Engine) query.uniqueResult();
     }
 
-    //    @Override
     public Engine getById(Integer id) {
-        return (Engine) session.load(Engine.class, id);
+        Query query = session.createQuery("from Engine e where e.id = ?");
+        query.setParameter(0, id);
+        return (Engine) query.uniqueResult();
     }
 
-    //    @Override
     public List<Engine> getAll() {
         Query query = session.createQuery("from Engine e");
         return query.list();

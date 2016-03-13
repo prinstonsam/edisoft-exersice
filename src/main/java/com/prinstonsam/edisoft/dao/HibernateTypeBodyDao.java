@@ -3,13 +3,8 @@ package com.prinstonsam.edisoft.dao;
 import com.prinstonsam.edisoft.model.TypeBody;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
-import javax.annotation.Resource;
 import javax.ejb.Stateless;
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
@@ -42,7 +37,9 @@ public class HibernateTypeBodyDao implements Dao<TypeBody>{
 
     @Override
     public TypeBody getById(Integer id) {
-        return (TypeBody) session.load(TypeBody.class, id);
+        Query query = session.createQuery("from TypeBody b where b.id = ?");
+        query.setParameter(0, id);
+        return (TypeBody) query.uniqueResult();
     }
 
     @Override
@@ -50,5 +47,4 @@ public class HibernateTypeBodyDao implements Dao<TypeBody>{
         Query query = session.createQuery("from TypeBody b");
         return query.list();
     }
-
 }

@@ -2,19 +2,9 @@ package com.prinstonsam.edisoft.model;
 
 
 
-/*
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-*/
 import javax.persistence.*;
 import java.util.Objects;
-import java.util.Set;
 
-/**
- * Created by samsik on 29.02.16.
- */
 @Entity
 @Table(name = "type_engine")
 public class TypeEngine {

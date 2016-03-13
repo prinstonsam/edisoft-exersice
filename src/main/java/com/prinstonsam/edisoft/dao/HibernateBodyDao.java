@@ -1,7 +1,6 @@
 package com.prinstonsam.edisoft.dao;
 
 import com.prinstonsam.edisoft.model.Body;
-import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -14,33 +13,27 @@ public class HibernateBodyDao {
     @PersistenceContext(unitName="MyPostgreDS")
     Session session;
 
-//    @Override
     public Integer save(Body value) {
         return (Integer) session.save(value);
     }
 
-//    @Override
     public void delete(Body value) {
         session.delete(value);
     }
 
-//    @Override
     public Body getByVin(String vin) {
         Query query = session.createQuery("from Body b where b.vin = ?");
         query.setParameter(0, vin);
         return (Body) query.uniqueResult();
     }
 
-//    @Override
     public Body getById(Integer id) {
-        return (Body) session.load(Body.class, id);
+        Query query = session.createQuery("from Body b where b.id = ?");
+        query.setParameter(0, id);
+        return (Body) query.uniqueResult();
     }
 
-//    @Override
     public List<Body> getAll() {
-
-
-//        Query query = session.createQuery("from Body b");
         return session.createCriteria(Body.class).list();
     }
 

@@ -1,11 +1,10 @@
 package com.prinstonsam.edisoft.model;
 
+import org.codehaus.jackson.annotate.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Objects;
 
-/**
- * Created by samsik on 29.02.16.
- */
 @Entity
 @Table(name = "engine")
 public class Engine {
@@ -37,6 +36,7 @@ public class Engine {
 
     @ManyToOne
     @JoinColumn(name="type_engine_id", nullable = true)
+    @JsonManagedReference
     private TypeEngine typeEngine;
 
     public Integer getId() {
@@ -69,10 +69,6 @@ public class Engine {
 
     public void setPower(Float power) {
         this.power = power;
-    }
-
-    public TypeEngine getTypeEngine() {
-        return typeEngine;
     }
 
     public void setTypeEngine(TypeEngine typeEngine) {

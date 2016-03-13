@@ -1,0 +1,58 @@
+CREATE TABLE body
+(
+    id INTEGER PRIMARY KEY NOT NULL,
+    vin VARCHAR(10),
+    color VARCHAR(20),
+    count_doors INTEGER,
+    type_body_id INTEGER
+);
+CREATE TABLE car
+(
+    id INTEGER PRIMARY KEY NOT NULL,
+    serial_number VARCHAR(32) NOT NULL,
+    transmission_id INTEGER,
+    engine_id INTEGER,
+    body_id INTEGER,
+);
+CREATE TABLE engine
+(
+    id INTEGER PRIMARY KEY NOT NULL,
+    serial_number VARCHAR(16),
+    type_engine VARCHAR(16),
+    volume NUMERIC(4,2),
+    power NUMERIC(8,4),
+    type_engine_id INTEGER
+);
+CREATE TABLE transmission
+(
+    id INTEGER PRIMARY KEY NOT NULL,
+    serial_number VARCHAR(16),
+    type_transmission_id INTEGER,
+    serialnumber VARCHAR(255)
+);
+CREATE TABLE type_body
+(
+    id INTEGER PRIMARY KEY NOT NULL,
+    name VARCHAR(32)
+);
+CREATE TABLE type_engine
+(
+    id INTEGER PRIMARY KEY NOT NULL,
+    name VARCHAR(32)
+);
+CREATE TABLE type_transmission
+(
+    id INTEGER PRIMARY KEY NOT NULL,
+    name VARCHAR(32)
+);
+ALTER TABLE body ADD FOREIGN KEY (type_body_id) REFERENCES type_body (id);
+ALTER TABLE car ADD FOREIGN KEY (transmission_id) REFERENCES transmission (id);
+ALTER TABLE car ADD FOREIGN KEY (engine_id) REFERENCES engine (id);
+ALTER TABLE car ADD FOREIGN KEY (body_id) REFERENCES body (id);
+CREATE UNIQUE INDEX unique_transmission_id ON car (transmission_id);
+CREATE UNIQUE INDEX unique_engine_id ON car (engine_id);
+CREATE UNIQUE INDEX unique_body_id ON car (body_id);
+ALTER TABLE engine ADD FOREIGN KEY (type_engine_id) REFERENCES type_engine (id);
+CREATE UNIQUE INDEX engine_serial_number_key ON engine (serial_number);
+ALTER TABLE transmission ADD FOREIGN KEY (type_transmission_id) REFERENCES type_transmission (id);
+CREATE UNIQUE INDEX transmission_serial_number_key ON transmission (serial_number);
